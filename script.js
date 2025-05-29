@@ -1,11 +1,28 @@
 const myLibrary = [];
 
-function Book (title, author, pages, read = false) {
+// This was the old version before changing to the class underneath
+/* function Book (title, author, pages, read = false) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID();
+} */
+
+    //Below is the class version, very similar to previous version but allows methods to be contained within (like toggleRead)
+class Book {
+  constructor(title, author, pages, read = false) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.id = crypto.randomUUID();
+  }
+
+  toggleRead() {
+    this.read = !this.read;
+    displayBooks();
+  }
 }
 
 function addBookToLibrary (title, author, pages, read = false) {
@@ -60,10 +77,11 @@ function deleteBook(bookId){
 
 }
 
-Book.prototype.toggleRead = function () {
+//This is the old veersion for toggleRead before refactoring to use class above
+/*Book.prototype.toggleRead = function () {
    this.read = !this.read;
     displayBooks();
-};
+};*/
 
 
 function handleAddBook() {
